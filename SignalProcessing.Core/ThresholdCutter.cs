@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    internal class ThresholdCutter
+    public class ThresholdCutter
     {
         private SignalChannelSignal _signal;
 

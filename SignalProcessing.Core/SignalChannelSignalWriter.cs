@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace SignalProcessing.Core
 {
-    static class SignalChannelSignalWriter
+    public static class SignalChannelSignalWriter
     {
         static public void Write(SignalChannelSignal obj, string filePath)
         {

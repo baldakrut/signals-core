@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    static class MarkupLoader
+    public static class MarkupLoader
     {
         static public List<OutOfRangeEventArgs> Load(string filePath, out float freq)
         {

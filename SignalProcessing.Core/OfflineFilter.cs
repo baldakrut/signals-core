@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    static class OfflineFilter
+    public static class OfflineFilter
     {
         static public float[] Filter(float[] data, int windowSize)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    internal class OutOfRangeEventArgs : EventArgs
+    public class OutOfRangeEventArgs : EventArgs
     {
         public OutOfRangeEventArgs(int start, int end)
         {

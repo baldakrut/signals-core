@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    static class MarkupWriter
+    public static class MarkupWriter
     {
         static public void Write(float freq, List<OutOfRangeEventArgs> markup, string filePath)
         {

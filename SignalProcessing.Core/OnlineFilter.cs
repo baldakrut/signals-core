@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    internal class OnlineFilter
+    public class OnlineFilter
     {
-        private int _windowSize;
-        private List<float> _buffer = new List<float>();
+        public int _windowSize;
+        public List<float> _buffer = new List<float>();
 
         public OnlineFilter(int windowSize)
         {

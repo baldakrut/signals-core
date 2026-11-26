@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    internal class SingleChannelRangeAnalyzer
+    public class SingleChannelRangeAnalyzer
     {
-        private float _min;
-        private float _max;
-        private int _minLength;
+        public float _min;
+        public float _max;
+        public int _minLength;
 
         public event EventHandler<OutOfRangeEventArgs> OutOfRange;
 

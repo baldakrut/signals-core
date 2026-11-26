@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace SignalProcessing.Core
 {
-    internal class Tools
+    public class Tools
     {
 
         public static SignalChannelSignal Line(float len, float freq, float k, float b)
