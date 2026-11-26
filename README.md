@@ -19,7 +19,6 @@ https://github.com/baldakrut/signals-generator-app
 
 Для совместной работы и сборки приложения оба репозитория необходимо клонировать в один общий родительский каталог, рядом друг с другом, под их исходными именами:
 
-```text
 C:\Project\
 	signals-core\
 	signals-generator-app\
