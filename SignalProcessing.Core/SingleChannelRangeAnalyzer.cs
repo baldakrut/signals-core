@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalParser
+namespace SignalProcessing.Core
 {
     internal class SingleChannelRangeAnalyzer
     {
