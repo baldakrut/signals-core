@@ -46,6 +46,7 @@
     <Compile Include="GeneratorParameters.cs" />
     <Compile Include="ISignalGenerator.cs" />
     <Compile Include="LineGenerator.cs" />
+    <Compile Include="MarkerDetectedEventArgs.cs" />
     <Compile Include="MarkupLoader.cs" />
     <Compile Include="MarkupWriter.cs" />
     <Compile Include="NoiseGenerator.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="SingleChannelSignalReader.cs" />
     <Compile Include="SingleChannelSignalWriter.cs" />
     <Compile Include="SingleChannelRangeAnalyzer.cs" />
+    <Compile Include="ThresholdAnalyzer.cs" />
     <Compile Include="ThresholdCutter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
