@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SignalProcessing.Core
 {
-    public class SignalChannelSignal
+    public class SingleChannelSignal
     {
-        public SignalChannelSignal(float freq, float[] value)
+        public SingleChannelSignal(float freq, float[] value)
         {
             Freq = freq;
             Value = value;

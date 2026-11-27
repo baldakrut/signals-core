@@ -7,7 +7,7 @@ namespace SignalProcessing.Core
     public class Tools
     {
 
-        public static SignalChannelSignal Line(float len, float freq, float k, float b)
+        public static SingleChannelSignal Line(float len, float freq, float k, float b)
         {
             int count = (int)(len * freq + 0.5);
             
@@ -21,9 +21,9 @@ namespace SignalProcessing.Core
 
         }
 
-            return new SignalChannelSignal(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
-        public static SignalChannelSignal Sin(float len, float freq, float period, float phase, float scale)
+        public static SingleChannelSignal Sin(float len, float freq, float period, float phase, float scale)
         {
             int count = (int)(len * freq + 0.5);
             float[]x = new float[count];
@@ -38,9 +38,9 @@ namespace SignalProcessing.Core
                 
             }
 
-            return new SignalChannelSignal(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
-        public static SignalChannelSignal Noise(float len, float freq,float amplitude)
+        public static SingleChannelSignal Noise(float len, float freq,float amplitude)
         {
             Random random = new Random();
             int count = (int)(len * freq + 0.5);
@@ -56,9 +56,9 @@ namespace SignalProcessing.Core
 
             }
 
-            return new SignalChannelSignal(freq, y);
+            return new SingleChannelSignal(freq, y);
         }
-        public static SignalChannelSignal Summ(List<SignalChannelSignal> signalList)
+        public static SingleChannelSignal Summ(List<SingleChannelSignal> signalList)
         {
 
             if (signalList.Count == 0)
@@ -88,10 +88,10 @@ namespace SignalProcessing.Core
                 }
             }
             
-            return new SignalChannelSignal(freq, summ_signals);
+            return new SingleChannelSignal(freq, summ_signals);
         }
 
-        public static SignalChannelSignal Concat(List<SignalChannelSignal> signalList)
+        public static SingleChannelSignal Concat(List<SingleChannelSignal> signalList)
         {
 
             if (signalList.Count == 0)
@@ -116,7 +116,7 @@ namespace SignalProcessing.Core
                 concat_signals = concat_signals.Concat(signalList[i].Value);
             }
 
-            return new SignalChannelSignal(freq, concat_signals.ToArray());
+            return new SingleChannelSignal(freq, concat_signals.ToArray());
         }
     }
 }

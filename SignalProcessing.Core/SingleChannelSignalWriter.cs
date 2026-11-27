@@ -9,9 +9,9 @@ using System.Windows;
 
 namespace SignalProcessing.Core
 {
-    public static class SignalChannelSignalWriter
+    public static class SingleChannelSignalWriter
     {
-        static public void Write(SignalChannelSignal obj, string filePath)
+        static public void Write(SingleChannelSignal obj, string filePath)
         {
             using (StreamWriter writer = new StreamWriter(filePath))
             {

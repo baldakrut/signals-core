@@ -8,15 +8,15 @@ namespace SignalProcessing.Core
 {
     public class ThresholdCutter
     {
-        private SignalChannelSignal _signal;
+        private SingleChannelSignal _signal;
 
         
-        public void SetSignal(SignalChannelSignal signal)
+        public void SetSignal(SingleChannelSignal signal)
         {
             _signal = signal;
 
         }
-        public SignalChannelSignal GetSignal()
+        public SingleChannelSignal GetSignal()
         {
             return _signal;
         }
