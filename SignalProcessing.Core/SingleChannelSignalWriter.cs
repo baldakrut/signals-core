@@ -15,8 +15,8 @@ namespace SignalProcessing.Core
         {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                writer.WriteLine(obj.Freq);
-                foreach(double element in obj.Value)
+                writer.WriteLine(obj.Frequency);
+                foreach(double element in obj.Data)
                 {
                     writer.WriteLine(element);
                 }
