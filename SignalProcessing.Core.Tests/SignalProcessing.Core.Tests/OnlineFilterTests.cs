@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using SignalProcessing.Core;
+using Xunit;
+
+namespace SignalProcessing.Core.Tests
+{
+    public class OnlineFilterTests
+    {
+        // Тест 10
+        [Fact]
+        public void Filter_SingleCall_ReturnsExpectedValues()
+        {
+            float[] data = { 1f, 2f, 3f, 4f, 5f };
+            float[] expected = { 1f, 4f / 3f, 2f, 3f, 4f };
+            var filter = new OnlineFilter(3);
+
+            float[] result = filter.Filter(data);
+
+            AssertSignal.Equal(expected, result);
+        }
+
+        // Тест 11
+        [Fact]
+        public void Filter_TwoCalls_MatchesSingleCall()
+        {
+            float[] expected = { 1f, 4f / 3f, 2f, 3f, 4f };
+            var filter = new OnlineFilter(3);
+
+            float[] part1 = filter.Filter(new float[] { 1f, 2f });
+            float[] part2 = filter.Filter(new float[] { 3f, 4f, 5f });
+
+            var combined = new List<float>(part1);
+            combined.AddRange(part2);
+
+            AssertSignal.Equal(expected, combined.ToArray());
+        }
+
+        // Тест 12
+        [Theory]
+        [InlineData(1)]
+        [InlineData(7)]
+        [InlineData(100)]
+        public void Filter_ChunkedInput_MatchesWholeInput(int chunkSize)
+        {
+            float[] data = GenerateRandomSignal(1000, seed: 42);
+            float[] expected = new OnlineFilter(7).Filter(data);
+
+            var chunkedFilter = new OnlineFilter(7);
+            var actual = new List<float>(data.Length);
+
+            for (int i = 0; i < data.Length; i += chunkSize)
+            {
+                int len = Math.Min(chunkSize, data.Length - i);
+                float[] chunk = new float[len];
+                Array.Copy(data, i, chunk, 0, len);
+                actual.AddRange(chunkedFilter.Filter(chunk));
+            }
+
+            AssertSignal.Equal(expected, actual.ToArray());
+        }
+
+        // Тест 13
+        [Fact]
+        public void Filter_MatchesOfflineFilterWithDelay()
+        {
+            const int windowSize = 7;
+            const int delay = (windowSize - 1) / 2; // 3
+            float[] data = GenerateRandomSignal(1000, seed: 42);
+
+            float[] offline = OfflineFilter.Filter(data, windowSize);
+            float[] online = new OnlineFilter(windowSize).Filter(data);
+
+            for (int i = delay; i < data.Length; i++)
+            {
+                Assert.Equal(offline[i - delay], online[i], 1e-5f);
+            }
+        }
+
+        // Тест 14
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void Constructor_InvalidWindowSize_ThrowsArgumentOutOfRangeException(int windowSize)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new OnlineFilter(windowSize));
+        }
+
+        private static float[] GenerateRandomSignal(int length, int seed)
+        {
+            var rnd = new Random(seed);
+            float[] data = new float[length];
+            for (int i = 0; i < length; i++)
+                data[i] = (float)(rnd.NextDouble() * 20.0 - 10.0);
+            return data;
+        }
+    }
+}
