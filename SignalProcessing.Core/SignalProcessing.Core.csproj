@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CircularBuffer.cs" />
+    <Compile Include="CrossingDirection.cs" />
     <Compile Include="GeneratorParameters.cs" />
     <Compile Include="ISignalGenerator.cs" />
     <Compile Include="LineGenerator.cs" />
+    <Compile Include="MarkerDetectedEventArgs.cs" />
     <Compile Include="MarkupLoader.cs" />
     <Compile Include="MarkupWriter.cs" />
     <Compile Include="NoiseGenerator.cs" />
@@ -54,13 +56,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resampler.cs" />
     <Compile Include="SamplingParameters.cs" />
+    <Compile Include="SignalAnalysisResult.cs" />
     <Compile Include="SignalGeneratorFactory.cs" />
+    <Compile Include="SignalMarker.cs" />
     <Compile Include="SignalOperations.cs" />
     <Compile Include="SineGenerator.cs" />
     <Compile Include="SingleChannelSignal.cs" />
     <Compile Include="SingleChannelSignalReader.cs" />
     <Compile Include="SingleChannelSignalWriter.cs" />
     <Compile Include="SingleChannelRangeAnalyzer.cs" />
+    <Compile Include="ThresholdAnalyzer.cs" />
     <Compile Include="ThresholdCutter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
