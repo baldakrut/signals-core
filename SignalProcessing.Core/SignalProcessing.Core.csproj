@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CircularBuffer.cs" />
+    <Compile Include="ISignalGenerator.cs" />
     <Compile Include="MarkupLoader.cs" />
     <Compile Include="MarkupWriter.cs" />
     <Compile Include="OfflineFilter.cs" />
@@ -49,6 +50,7 @@
     <Compile Include="OutOfRangeEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resampler.cs" />
+    <Compile Include="SamplingParameters.cs" />
     <Compile Include="SignalOperations.cs" />
     <Compile Include="SingleChannelSignal.cs" />
     <Compile Include="SingleChannelSignalReader.cs" />
