@@ -94,5 +94,62 @@ namespace SignalProcessing.Core.Tests
                 data[i] = (float)(rnd.NextDouble() * 20.0 - 10.0);
             return data;
         }
+        // Тест 33
+        [Fact]
+        public void Reset_AfterSignal_MatchesNewFilter()
+        {
+            float[] firstSignal = { 100f, 200f, 300f, 400f, 500f };
+            float[] secondSignal = { 1f, 2f, 3f, 4f, 5f };
+
+            var reusedFilter = new OnlineFilter(3);
+            reusedFilter.Filter(firstSignal);
+            reusedFilter.Reset();
+
+            float[] actual = reusedFilter.Filter(secondSignal);
+            float[] expected = new OnlineFilter(3).Filter(secondSignal);
+
+            AssertSignal.Equal(expected, actual);
+        }
+
+        // Тест 34
+        [Fact]
+        public void Filter_WindowSizeOne_ReturnsInputValues()
+        {
+            float[] data = { -3.5f, 0f, 1.25f, 42f, 7.75f };
+            var filter = new OnlineFilter(1);
+
+            float[] result = filter.Filter(data);
+
+            Assert.NotSame(data, result);
+            AssertSignal.Equal(data, result);
+        }
+
+        // Тест 35
+        [Fact]
+        public void Filter_LongSignalWithLargeOffset_MatchesDirectDoubleCalculation()
+        {
+            const int length = 200_000;
+            const int windowSize = 7;
+            var rnd = new Random(42);
+            float[] data = new float[length];
+            for (int i = 0; i < length; i++)
+                data[i] = (float)(900.0 + rnd.NextDouble() * 200.0);
+
+            float[] expected = new float[length];
+            for (int i = 0; i < length; i++)
+            {
+                double windowSum = 0.0;
+                for (int k = 0; k < windowSize; k++)
+                {
+                    int idx = i - k;
+                    windowSum += idx < 0 ? data[0] : data[idx];
+                }
+                expected[i] = (float)(windowSum / windowSize);
+            }
+
+            float[] actual = new OnlineFilter(windowSize).Filter(data);
+
+            AssertSignal.Equal(expected, actual, 1e-3f);
+        }
     }
 }
